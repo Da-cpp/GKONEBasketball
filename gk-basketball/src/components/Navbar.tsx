@@ -1,30 +1,21 @@
 import { NavLink } from 'react-router-dom'
-import logo from '../assets/logo.png'
 
 export default function Navbar() {
   return (
-    <nav className="bg-[#0B0B0B] border-b border-zinc-800 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+    <nav className="bg-zinc-950 border-b border-zinc-800 sticky top-0 z-50">
+      <div className="max-w-5xl mx-auto px-4 flex items-center justify-between h-14">
 
-        <div className="flex items-center gap-4">
-          <img
-            src={logo}
-            alt="GK One Basketball"
-            className="h-12 w-auto object-contain"
-          />
-
-          <div>
-            <div className="text-white font-bold text-base">
-              GK One Basketball
-            </div>
-
-            <div className="text-zinc-500 text-xs">
-              Howard McCatty Community Basketball League
-            </div>
+        <div className="flex items-center gap-2 min-w-0">
+          <div className="w-8 h-8 shrink-0 bg-red-600 rounded-lg flex items-center justify-center font-black text-white text-xs">
+            GK
+          </div>
+          <div className="hidden sm:block min-w-0">
+            <div className="text-white font-bold text-sm leading-tight truncate">GKOne Basketball</div>
+            <div className="text-zinc-500 text-xs leading-tight truncate">McCatty Community League 2026</div>
           </div>
         </div>
 
-        <div className="flex items-center bg-zinc-900 border border-zinc-800 rounded-lg p-1">
+        <div className="flex items-center bg-zinc-900 border border-zinc-800 rounded-lg p-1 gap-0.5">
           {[
             { to: '/', label: 'Home' },
             { to: '/fixtures', label: 'Fixtures' },
@@ -35,9 +26,9 @@ export default function Navbar() {
               to={to}
               end={to === '/'}
               className={({ isActive }) =>
-                `px-5 py-2 rounded-md text-sm font-semibold transition-all ${
+                `px-3 py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-all ${
                   isActive
-                    ? 'bg-[#E10600] text-white'
+                    ? 'bg-red-600 text-white shadow-sm'
                     : 'text-zinc-400 hover:text-white'
                 }`
               }
@@ -47,7 +38,6 @@ export default function Navbar() {
           ))}
         </div>
 
-      
       </div>
     </nav>
   )

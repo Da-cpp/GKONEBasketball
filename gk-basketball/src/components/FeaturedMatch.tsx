@@ -6,79 +6,63 @@ export default function FeaturedMatch({ match }: { match: Match }) {
 
       <div className="absolute inset-0 bg-gradient-to-r from-black via-zinc-900 to-black" />
 
-      <div className="relative z-10 px-10 py-5">
+      <div className="relative z-10 px-5 sm:px-10 py-5">
 
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center mb-6 sm:mb-8">
           <div>
-            <p className="text-[#E10600] uppercase tracking-[0.3em] text-sm font-bold">
+            <p className="text-[#E10600] uppercase tracking-[0.3em] text-xs sm:text-sm font-bold">
               Next Match
             </p>
-
-            <h2 className="text-white text-4xl font-black mt-2">
+            <h2 className="text-white text-2xl sm:text-4xl font-black mt-1 sm:mt-2">
               Match Centre
             </h2>
           </div>
-
           <div className="text-right">
-            <p className="text-zinc-500 text-sm">
-              Game #{match.gameId}
-            </p>
+            <p className="text-zinc-500 text-sm">Game #{match.gameId}</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-3 items-center py-6">
+        <div className="grid grid-cols-3 items-center py-4 sm:py-6">
 
-  <div className="text-center">
-    <p className="text-zinc-500 uppercase text-xs tracking-widest mb-3">
-      Home Team
-    </p>
+          <div className="text-center">
+            <p className="text-zinc-500 uppercase text-xs tracking-widest mb-2 sm:mb-3">
+              Home Team
+            </p>
+            <h3 className="text-white text-xl sm:text-5xl font-black leading-tight">
+              {match.teamA}
+            </h3>
+          </div>
 
-    <h3 className="text-white text-5xl font-black leading-none">
-      {match.teamA}
-    </h3>
-  </div>
+          <div className="text-center">
+            <div className="text-[#E10600] text-5xl sm:text-8xl font-black leading-none">
+              VS
+            </div>
+          </div>
 
-  <div className="text-center">
-    <div className="text-[#E10600] text-8xl font-black leading-none">
-      VS
-    </div>
-  </div>
+          <div className="text-center">
+            <p className="text-zinc-500 uppercase text-xs tracking-widest mb-2 sm:mb-3">
+              Away Team
+            </p>
+            <h3 className="text-white text-xl sm:text-5xl font-black leading-tight">
+              {match.teamB}
+            </h3>
+          </div>
 
-  <div className="text-center">
-    <p className="text-zinc-500 uppercase text-xs tracking-widest mb-3">
-      Away Team
-    </p>
+        </div>
 
-    <h3 className="text-white text-5xl font-black leading-none">
-      {match.teamB}
-    </h3>
-  </div>
-
-</div>
-
-        <div className="mt-10 flex justify-center gap-10 flex-wrap">
-
+        <div className="mt-6 sm:mt-10 grid grid-cols-3 sm:flex sm:justify-center sm:gap-10">
           <div className="text-center">
             <p className="text-zinc-500 text-xs uppercase">Date</p>
-            <p className="text-white font-bold">
-              {match.day}, {match.date}
-            </p>
+            <p className="text-white font-bold text-xs sm:text-base">{match.day}, {match.date}</p>
           </div>
-
           <div className="text-center">
             <p className="text-zinc-500 text-xs uppercase">Time</p>
-            <p className="text-white font-bold">
-              {match.time}
-            </p>
+            <p className="text-white font-bold text-xs sm:text-base">{match.time}</p>
           </div>
-
           <div className="text-center">
             <p className="text-zinc-500 text-xs uppercase">Venue</p>
-            <p className="text-white font-bold">
-              {match.venue}
-            </p>
+            <p className="text-white font-bold text-xs sm:text-base">{match.venue}</p>
           </div>
-
         </div>
 
       </div>
