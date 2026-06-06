@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-950">
       {/* Hero Banner */}
-      <div className="relative bg-gradient-to-br from-zinc-900 via-zinc-900 to-black border-b border-zinc-800 overflow-hidden">
+      {/* <div className="relative bg-gradient-to-br from-zinc-900 via-zinc-900 to-black border-b border-zinc-800 overflow-hidden">
         <div className="absolute inset-0 opacity-5"
           style={{
             backgroundImage: `repeating-linear-gradient(45deg, #ffffff 0, #ffffff 1px, transparent 0, transparent 50%)`,
@@ -32,15 +32,14 @@ export default function Home() {
         <div className="absolute left-0 top-0 bottom-0 w-1 bg-red-600" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-red-600 via-red-600/20 to-transparent" />
 
-        <div className="relative max-w-5xl mx-auto px-6 py-5 flex items-center justify-between">
+        <div className="relative max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           <div>
             <p className="text-red-500 text-xs font-semibold uppercase tracking-widest mb-0.5">
-              GKOne · McCatty Community League 2026
+              GK One · Howard McCatty Community Basketball League 
             </p>
             <h1 className="text-white font-black text-2xl tracking-tight">Season Hub</h1>
           </div>
 
-          {/* Stats strip inline */}
           <div className="flex gap-3">
             {[
               { label: 'Total Games', value: matches.length },
@@ -54,10 +53,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main content */}
-      <div className="max-w-5xl mx-auto px-6 py-6">
+      <div className="max-w-7xl mx-auto px-6 py-6">
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <div className="flex flex-col items-center gap-3">
