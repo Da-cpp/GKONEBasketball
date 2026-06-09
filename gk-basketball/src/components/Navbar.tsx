@@ -14,7 +14,7 @@ export default function Navbar() {
           />
           <div className="min-w-0">
             <div className="text-white font-bold text-sm sm:text-base truncate">
-              GK One Basketball
+              GK One
             </div>
             <div className="text-zinc-500 text-xs truncate hidden sm:block">
               Howard McCatty Community Basketball League

@@ -29,7 +29,6 @@ export async function fetchMatches(): Promise<Match[]> {
   const text = await response.text();
 
   const lines = text.trim().split('\n');
-  // Skip first 2 rows (title + note) and header row = skip 3 rows total
   const dataLines = lines.slice(1);
 
   return dataLines
