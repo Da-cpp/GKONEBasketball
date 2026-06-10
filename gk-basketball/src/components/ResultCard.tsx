@@ -11,8 +11,14 @@ export default function ResultCard({ match, scorer, playerScores }: Props) {
   const scoreB = Number(match.scoreB)
   const aWon = scoreA > scoreB
   const bWon = scoreB > scoreA
-  const ptA = scorer ? playerScores.find(p => p.playerName === scorer.topScorerA)?.points : undefined
-  const ptB = scorer ? playerScores.find(p => p.playerName === scorer.topScorerB)?.points : undefined
+
+  const ptA = scorer
+    ? playerScores.find(p => p.playerName === scorer.topScorerA)?.points
+    : undefined
+
+  const ptB = scorer
+    ? playerScores.find(p => p.playerName === scorer.topScorerB)?.points
+    : undefined
 
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg px-3 sm:px-5 py-3 sm:py-4 hover:border-zinc-600 transition-all">
@@ -25,6 +31,7 @@ export default function ResultCard({ match, scorer, playerScores }: Props) {
             <span className="text-white text-xs font-bold">{match.date}</span>
           </div>
         </div>
+
         <span className="text-xs bg-zinc-800 text-zinc-400 px-2 py-0.5 rounded-full">
           {match.venue}
         </span>
@@ -34,51 +41,60 @@ export default function ResultCard({ match, scorer, playerScores }: Props) {
         <span className={`font-semibold text-sm text-right flex-1 truncate ${aWon ? 'text-white' : 'text-zinc-500'}`}>
           {match.teamA}
         </span>
+
         <div className="flex items-center gap-1 bg-zinc-800 px-2 sm:px-3 py-1 rounded-md shrink-0">
-          <span className={`font-black text-base sm:text-lg ${aWon ? 'text-white' : 'text-zinc-400'}`}>{match.scoreA}</span>
+          <span className={`font-black text-base sm:text-lg ${aWon ? 'text-white' : 'text-zinc-400'}`}>
+            {match.scoreA}
+          </span>
           <span className="text-zinc-600 font-bold mx-1">–</span>
-          <span className={`font-black text-base sm:text-lg ${bWon ? 'text-white' : 'text-zinc-400'}`}>{match.scoreB}</span>
+          <span className={`font-black text-base sm:text-lg ${bWon ? 'text-white' : 'text-zinc-400'}`}>
+            {match.scoreB}
+          </span>
         </div>
+
         <span className={`font-semibold text-sm text-left flex-1 truncate ${bWon ? 'text-white' : 'text-zinc-500'}`}>
           {match.teamB}
         </span>
       </div>
 
       {scorer && (scorer.topScorerA !== '-' || scorer.topScorerB !== '-') && (
-  <div className="mt-3 pt-3 border-t border-zinc-800">
-    
-    <div className="flex items-center justify-between mb-1">
-      <span className="text-xs text-zinc-500 uppercase tracking-wide">
-        Top Scorers
-      </span>
-      <span className="text-[10px] text-zinc-600">
-        {/*CAN PUT TEXT HERE PLS RMEMEBER */}
-      </span>
-    </div>
+        <div className="mt-3 pt-3 border-t border-zinc-800">
 
-    <div className="flex items-center justify-between bg-zinc-900/40 rounded-lg px-3 py-2">
-      
-      {scorer.topScorerA !== '-' ? (
-        <div className="flex items-center gap-2">
-          <span className="text-red-400">🏀</span>
-          <span className="text-sm font-semibold text-white">
-            {scorer.topScorerA}{ptA !== undefined ? ` · ${ptA}` : ''}
-          </span>
-        </div>
-      ) : <span />}
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs text-zinc-500 uppercase tracking-wide">
+              Top Scorers
+            </span>
+          </div>
 
-      {scorer.topScorerB !== '-' ? (
-        <div className="flex items-center gap-2">
-          <span className="text-red-400">🏀</span>
-          <span className="text-sm font-semibold text-white">
-            {ptB !== undefined ? `${ptB} · ` : ''}{scorer.topScorerB}
-          </span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 bg-zinc-900/40 rounded-lg px-3 py-2">
+
+            {scorer.topScorerA !== '-' ? (
+              <div className="flex items-center gap-2 justify-center sm:justify-start">
+                <span className="text-red-400">🏀</span>
+                <span className="text-sm font-semibold text-white">
+                  {scorer.topScorerA}
+                  {ptA !== undefined ? ` · ${ptA}` : ''}
+                </span>
+              </div>
+            ) : (
+              <span />
+            )}
+
+            {scorer.topScorerB !== '-' ? (
+              <div className="flex items-center gap-2 justify-center sm:justify-end">
+                <span className="text-red-400">🏀</span>
+                <span className="text-sm font-semibold text-white">
+                  {scorer.topScorerB}
+                  {ptB !== undefined ? ` · ${ptB}` : ''}
+                </span>
+              </div>
+            ) : (
+              <span />
+            )}
+
+          </div>
         </div>
-      ) : <span />}
-      
-    </div>
-  </div>
-)}
+      )}
 
     </div>
   )
