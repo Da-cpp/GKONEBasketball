@@ -43,7 +43,7 @@ export default function ResultCard({ match, scorer, playerScores }: Props) {
 
       {/* score */}
       <div className="flex items-center gap-2">
-        <span className={`font-semibold text-sm text-right flex-1 truncate ${
+        <span className={`font-semibold text-sm text-right flex-1 break-words min-w-0 ${
           aWon ? 'text-white' : 'text-zinc-500'
         }`}>
           {match.teamA}
@@ -65,7 +65,7 @@ export default function ResultCard({ match, scorer, playerScores }: Props) {
           </span>
         </div>
 
-        <span className={`font-semibold text-sm text-left flex-1 truncate ${
+        <span className={`font-semibold text-sm text-left flex-1 break-words min-w-0 ${
           bWon ? 'text-white' : 'text-zinc-500'
         }`}>
           {match.teamB}
