@@ -66,31 +66,41 @@ export default function ResultCard({ match, scorer, playerScores }: Props) {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 bg-zinc-900/40 rounded-lg px-3 py-2">
+          <div className="flex items-center bg-zinc-900/40 rounded-lg px-3 py-2">
 
-            {scorer.topScorerA !== '-' ? (
-              <div className="flex items-center gap-2 justify-center sm:justify-start">
-                <span className="text-red-400">🏀</span>
-                <span className="text-sm font-semibold text-white">
-                  {scorer.topScorerA}
-                  {ptA !== undefined ? ` · ${ptA}` : ''}
-                </span>
-              </div>
-            ) : (
-              <span />
-            )}
+            <div className="flex-1 flex justify-start">
+              {scorer.topScorerA !== '-' ? (
+                <div className="flex items-center gap-2">
+                  <span className="text-red-400">🏀</span>
+                  <span className="text-sm font-semibold text-white truncate">
+                    {scorer.topScorerA}
+                    {ptA !== undefined ? ` · ${ptA}` : ''}
+                  </span>
+                </div>
+              ) : (
+                <span />
+              )}
+            </div>
 
-            {scorer.topScorerB !== '-' ? (
-              <div className="flex items-center gap-2 justify-center sm:justify-end">
-                <span className="text-red-400">🏀</span>
-                <span className="text-sm font-semibold text-white">
-                  {scorer.topScorerB}
-                  {ptB !== undefined ? ` · ${ptB}` : ''}
-                </span>
-              </div>
-            ) : (
-              <span />
-            )}
+            <div className="px-2">
+              <span className="text-[10px] text-zinc-500 uppercase tracking-wide whitespace-nowrap">
+                
+              </span>
+            </div>
+
+            <div className="flex-1 flex justify-end">
+              {scorer.topScorerB !== '-' ? (
+                <div className="flex items-center gap-2">
+                  <span className="text-red-400">🏀</span>
+                  <span className="text-sm font-semibold text-white text-right truncate">
+                    {ptB !== undefined ? `${ptB} · ` : ''}
+                    {scorer.topScorerB}
+                  </span>
+                </div>
+              ) : (
+                <span />
+              )}
+            </div>
 
           </div>
         </div>
