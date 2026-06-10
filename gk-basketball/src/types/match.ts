@@ -36,4 +36,9 @@ export interface PlayerScore {
   team: string
   playerName: string
   points: number
+  steals: number
+  rebounds: number
+  assists: number
+  blocks: number
+  topPerformer: boolean
 }

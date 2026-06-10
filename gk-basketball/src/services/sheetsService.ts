@@ -102,6 +102,11 @@ export async function fetchPlayerScores(): Promise<PlayerScore[]> {
         team: cols[1],
         playerName: cols[2],
         points: Number(cols[3]) || 0,
+        steals: Number(cols[4]) || 0,
+        rebounds: Number(cols[5]) || 0,
+        assists: Number(cols[6]) || 0,
+        blocks: Number(cols[7]) || 0,
+        topPerformer: cols[8]?.toLowerCase() === 'yes',
       }
     })
     .filter((p): p is PlayerScore => p !== null)
