@@ -1,15 +1,22 @@
 import { useEffect, useState } from 'react'
-import { fetchMatches } from '../services/sheetsService'
-import type { Match } from '../types/match'
+import { fetchMatches, fetchGameScorers } from '../services/sheetsService'
+import type { Match, GameScorer, PlayerScore } from '../types/match'
 import ResultCard from '../components/ResultCard'
+import { fetchPlayerScores } from '../services/sheetsService'
+
 
 export default function Results() {
   const [matches, setMatches] = useState<Match[]>([])
+  const [scorers, setScorers] = useState<GameScorer[]>([])
   const [loading, setLoading] = useState(true)
+  const [playerScores, setPlayerScores] = useState<PlayerScore[]>([])
+
 
   useEffect(() => {
-    fetchMatches().then((data) => {
-      setMatches(data)
+    Promise.all([fetchMatches(), fetchGameScorers(), fetchPlayerScores()]).then(([m, s, p]) => {
+      setMatches(m)
+      setScorers(s)
+      setPlayerScores(p)
       setLoading(false)
     })
   }, [])
@@ -43,7 +50,12 @@ export default function Results() {
         ) : (
           <div className="flex flex-col gap-2">
             {completed.map((m) => (
-              <ResultCard key={m.gameId} match={m} />
+              <ResultCard
+                key={m.gameId}
+                match={m}
+                scorer={scorers.find((s) => s.gameId === m.gameId)}
+                playerScores={playerScores.filter((p) => p.gameId === m.gameId)}
+              />
             ))}
           </div>
         )}

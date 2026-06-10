@@ -12,3 +12,28 @@ export interface Match {
   scoreA: string;
   scoreB: string;
 }
+
+export interface GameScorer {
+  gameId: number;
+  date: string;
+  teamA: string;
+  topScorerA: string;
+  scoreA: string;
+  teamB: string;
+  topScorerB: string;
+  scoreB: string;
+}
+
+export interface SeasonScorer {
+  playerName: string;
+  team: string;
+  totalPoints: number;
+  gamesPlayed: number;
+}
+
+export interface PlayerScore {
+  gameId: number
+  team: string
+  playerName: string
+  points: number
+}
