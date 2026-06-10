@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-950">
 
-      <div className="relative bg-gradient-to-br from-zinc-900 via-zinc-900 to-black border-b border-zinc-800 overflow-hidden">
+      {/* <div className="relative bg-gradient-to-br from-zinc-900 via-zinc-900 to-black border-b border-zinc-800 overflow-hidden">
         <div className="absolute inset-0 opacity-5"
           style={{
             backgroundImage: `repeating-linear-gradient(45deg, #ffffff 0, #ffffff 1px, transparent 0, transparent 50%)`,
@@ -57,7 +57,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
         {loading ? (
