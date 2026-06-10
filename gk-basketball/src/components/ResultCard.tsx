@@ -13,15 +13,13 @@ export default function ResultCard({ match, scorer, playerScores }: Props) {
   const aWon = scoreA > scoreB
   const bWon = scoreB > scoreA
 
-  const topA =
-    scorer?.topScorerA && scorer.topScorerA !== '-'
-      ? playerScores.find(p => p.playerName === scorer.topScorerA)
-      : undefined
+  const ptA = scorer
+    ? playerScores.find(p => p.playerName === scorer.topScorerA)?.points
+    : undefined
 
-  const topB =
-    scorer?.topScorerB && scorer.topScorerB !== '-'
-      ? playerScores.find(p => p.playerName === scorer.topScorerB)
-      : undefined
+  const ptB = scorer
+    ? playerScores.find(p => p.playerName === scorer.topScorerB)?.points
+    : undefined
 
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg px-3 sm:px-5 py-3 sm:py-4 hover:border-zinc-600 transition-all">
@@ -50,110 +48,61 @@ export default function ResultCard({ match, scorer, playerScores }: Props) {
         </span>
 
         <div className="flex items-center gap-1 bg-zinc-800 px-2 sm:px-3 py-1 rounded-md shrink-0">
-          <span className={`font-black text-base sm:text-lg ${
-            aWon ? 'text-white' : 'text-zinc-400'
-          }`}>
+          <span className={`font-black text-base sm:text-lg ${aWon ? 'text-white' : 'text-zinc-400'}`}>
             {match.scoreA}
           </span>
-
           <span className="text-zinc-600 font-bold mx-1">–</span>
-
-          <span className={`font-black text-base sm:text-lg ${
-            bWon ? 'text-white' : 'text-zinc-400'
-          }`}>
+          <span className={`font-black text-base sm:text-lg ${bWon ? 'text-white' : 'text-zinc-400'}`}>
             {match.scoreB}
           </span>
         </div>
 
-        <span className={`font-semibold text-sm text-left flex-1 truncate ${
-          bWon ? 'text-white' : 'text-zinc-500'
-        }`}>
+        <span className={`font-semibold text-sm text-left flex-1 truncate ${bWon ? 'text-white' : 'text-zinc-500'}`}>
           {match.teamB}
         </span>
       </div>
 
-      {/* top performers fro each team */}
-      {(topA || topB) && (
+      {scorer && (scorer.topScorerA !== '-' || scorer.topScorerB !== '-') && (
         <div className="mt-3 pt-3 border-t border-zinc-800">
-          <span className="text-xs text-zinc-500 uppercase tracking-wide mb-3 block">
-            Top Performers
-          </span>
 
-          <div className="flex gap-3 flex-wrap sm:flex-nowrap">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs text-zinc-500 uppercase tracking-wide">
+              Top Scorers
+            </span>
+          </div>
 
-            {/* teamA */}
-            {topA && (
-              <div className={`flex-1 min-w-0 rounded-lg p-3 border ${
-                aWon
-                  ? 'border-yellow-500/40 bg-yellow-500/5'
-                  : 'border-zinc-700 bg-zinc-800/40'
-              }`}>
-                <div className="flex items-center gap-1.5 mb-2">
-                  <span className={`text-xs font-black uppercase tracking-wide ${
-                    aWon ? 'text-yellow-400' : 'text-zinc-400'
-                  }`}>
-                    {aWon ? '🥇' : '🥈'} {topA.playerName}
-                  </span>
-                </div>
+          <div className="flex items-center bg-zinc-900/40 rounded-lg px-3 py-2 gap-3">
 
-                <div className="flex flex-col gap-0.5">
-                  {[
-                    { label: 'PTS', value: topA.points },
-                    { label: 'STL', value: topA.steals },
-                    { label: 'REB', value: topA.rebounds },
-                    { label: 'AST', value: topA.assists },
-                    { label: 'BLK', value: topA.blocks },
-                  ].map(({ label, value }) => (
-                    <div key={label} className="flex items-center justify-between">
-                      <span className="text-zinc-500 text-xs">{label}</span>
-                      <span className={`text-xs font-bold ${
-                        aWon ? 'text-yellow-300' : 'text-zinc-300'
-                      }`}>
-                        {value}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+            {/* Team A scorer (left side) */}
+            {scorer.topScorerA !== '-' && (
+              <div className="flex items-center gap-2 flex-1 min-w-0">
+                <span className="text-red-400 shrink-0">🏀</span>
+                <span className="text-sm font-semibold text-white break-words">
+                  {scorer.topScorerA}
+                  {ptA !== undefined ? ` · ${ptA}` : ''}
+                </span>
               </div>
             )}
 
-            {/* teamB */}
-            {topB && (
-              <div className={`flex-1 min-w-0 rounded-lg p-3 border ${
-                bWon
-                  ? 'border-yellow-500/40 bg-yellow-500/5'
-                  : 'border-zinc-700 bg-zinc-800/40'
-              }`}>
-                <div className="flex items-center gap-1.5 mb-2 sm:justify-end">
-                  <span className={`text-xs font-black uppercase tracking-wide ${
-                    bWon ? 'text-yellow-400' : 'text-zinc-400'
-                  }`}>
-                    {bWon ? '🥇' : '🥈'} {topB.playerName}
-                  </span>
-                </div>
+            {scorer.topScorerA !== '-' && scorer.topScorerB !== '-' && (
+              <div className="w-px h-6 bg-zinc-700 shrink-0" />
+            )}
 
-                <div className="flex flex-col gap-0.5">
-                  {[
-                    { label: 'PTS', value: topB.points },
-                    { label: 'STL', value: topB.steals },
-                    { label: 'REB', value: topB.rebounds },
-                    { label: 'AST', value: topB.assists },
-                    { label: 'BLK', value: topB.blocks },
-                  ].map(({ label, value }) => (
-                    <div key={label} className="flex items-center justify-between sm:flex-row-reverse">
-                      <span className="text-zinc-500 text-xs">{label}</span>
-                      <span className={`text-xs font-bold ${
-                        bWon ? 'text-yellow-300' : 'text-zinc-300'
-                      }`}>
-                        {value}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+            {/* Team B scorer (right side) */}
+            {scorer.topScorerB !== '-' && (
+              <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
+                <span className="text-sm font-semibold text-white text-right break-words">
+                  {ptB !== undefined ? `${ptB} · ` : ''}
+                  {scorer.topScorerB}
+                </span>
+                <span className="text-red-400 shrink-0">🏀</span>
               </div>
             )}
 
           </div>
+
+
+          
         </div>
       )}
 
