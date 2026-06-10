@@ -66,46 +66,38 @@ export default function ResultCard({ match, scorer, playerScores }: Props) {
             </span>
           </div>
 
-          <div className="flex items-center bg-zinc-900/40 rounded-lg px-3 py-2 gap-2">
+          <div className="flex items-center bg-zinc-900/40 rounded-lg px-3 py-2 gap-3">
 
-            {/*left scorer */}
-            <div className="flex-1 min-w-0 flex justify-start">
-              {scorer.topScorerA !== '-' ? (
-                <div className="flex items-center gap-2 min-w-0">
-                  <span className="text-red-400 shrink-0">🏀</span>
-                  <span className="text-sm font-semibold text-white truncate">
-                    {scorer.topScorerA}
-                    {ptA !== undefined ? ` · ${ptA}` : ''}
-                  </span>
-                </div>
-              ) : (
-                <span />
-              )}
-            </div>
+            {/* Team A scorer (left side) */}
+            {scorer.topScorerA !== '-' && (
+              <div className="flex items-center gap-2 flex-1 min-w-0">
+                <span className="text-red-400 shrink-0">🏀</span>
+                <span className="text-sm font-semibold text-white break-words">
+                  {scorer.topScorerA}
+                  {ptA !== undefined ? ` · ${ptA}` : ''}
+                </span>
+              </div>
+            )}
 
-            {/* middle label */}
-            <div className="shrink-0 px-2">
-              <span className="text-[10px] text-zinc-500 uppercase tracking-wide whitespace-nowrap">
-                Top
-              </span>
-            </div>
+            {scorer.topScorerA !== '-' && scorer.topScorerB !== '-' && (
+              <div className="w-px h-6 bg-zinc-700 shrink-0" />
+            )}
 
-            {/* right scorer */}
-            <div className="flex-1 min-w-0 flex justify-end">
-              {scorer.topScorerB !== '-' ? (
-                <div className="flex items-center gap-2 min-w-0 justify-end">
-                  <span className="text-sm font-semibold text-white truncate text-right">
-                    {ptB !== undefined ? `${ptB} · ` : ''}
-                    {scorer.topScorerB}
-                  </span>
-                  <span className="text-red-400 shrink-0">🏀</span>
-                </div>
-              ) : (
-                <span />
-              )}
-            </div>
+            {/* Team B scorer (right side) */}
+            {scorer.topScorerB !== '-' && (
+              <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
+                <span className="text-sm font-semibold text-white text-right break-words">
+                  {ptB !== undefined ? `${ptB} · ` : ''}
+                  {scorer.topScorerB}
+                </span>
+                <span className="text-red-400 shrink-0">🏀</span>
+              </div>
+            )}
 
           </div>
+
+
+          
         </div>
       )}
 
