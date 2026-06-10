@@ -66,12 +66,13 @@ export default function ResultCard({ match, scorer, playerScores }: Props) {
             </span>
           </div>
 
-          <div className="flex items-center bg-zinc-900/40 rounded-lg px-3 py-2">
+          <div className="flex items-center bg-zinc-900/40 rounded-lg px-3 py-2 gap-2">
 
-            <div className="flex-1 flex justify-start">
+            {/*left scorer */}
+            <div className="flex-1 min-w-0 flex justify-start">
               {scorer.topScorerA !== '-' ? (
-                <div className="flex items-center gap-2">
-                  <span className="text-red-400">🏀</span>
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="text-red-400 shrink-0">🏀</span>
                   <span className="text-sm font-semibold text-white truncate">
                     {scorer.topScorerA}
                     {ptA !== undefined ? ` · ${ptA}` : ''}
@@ -82,20 +83,22 @@ export default function ResultCard({ match, scorer, playerScores }: Props) {
               )}
             </div>
 
-            <div className="px-2">
+            {/* middle label */}
+            <div className="shrink-0 px-2">
               <span className="text-[10px] text-zinc-500 uppercase tracking-wide whitespace-nowrap">
-                
+                Top
               </span>
             </div>
 
-            <div className="flex-1 flex justify-end">
+            {/* right scorer */}
+            <div className="flex-1 min-w-0 flex justify-end">
               {scorer.topScorerB !== '-' ? (
-                <div className="flex items-center gap-2">
-                  <span className="text-red-400">🏀</span>
-                  <span className="text-sm font-semibold text-white text-right truncate">
+                <div className="flex items-center gap-2 min-w-0 justify-end">
+                  <span className="text-sm font-semibold text-white truncate text-right">
                     {ptB !== undefined ? `${ptB} · ` : ''}
                     {scorer.topScorerB}
                   </span>
+                  <span className="text-red-400 shrink-0">🏀</span>
                 </div>
               ) : (
                 <span />
