@@ -31,6 +31,34 @@ export interface SeasonScorer {
   gamesPlayed: number;
 }
 
+export interface SeasonStealer {
+  playerName: string;
+  team: string;
+  totalSteals: number;
+  gamesPlayed: number;
+}
+
+export interface SeasonRebounder {
+  playerName: string;
+  team: string;
+  totalRebounds: number;
+  gamesPlayed: number;
+}
+
+export interface SeasonAssister {
+  playerName: string;
+  team: string;
+  totalAssists: number;
+  gamesPlayed: number;
+}
+
+export interface SeasonBlocker {
+  playerName: string;
+  team: string;
+  totalBlocks: number;
+  gamesPlayed: number;
+}
+
 export interface PlayerScore {
   gameId: number
   team: string
