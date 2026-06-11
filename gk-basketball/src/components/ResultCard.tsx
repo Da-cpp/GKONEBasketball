@@ -6,23 +6,17 @@ interface Props {
   playerScores: PlayerScore[]
 }
 
-export default function ResultCard({ match, scorer, playerScores }: Props) {
+export default function ResultCard({ match, playerScores }: Props) {
   const scoreA = Number(match.scoreA)
   const scoreB = Number(match.scoreB)
 
   const aWon = scoreA > scoreB
   const bWon = scoreB > scoreA
 
-  const topA =
-    scorer?.topScorerA && scorer.topScorerA !== '-'
-      ? playerScores.find(p => p.playerName === scorer.topScorerA)
-      : undefined
 
-  const topB =
-    scorer?.topScorerB && scorer.topScorerB !== '-'
-      ? playerScores.find(p => p.playerName === scorer.topScorerB)
-      : undefined
-
+  const topA = playerScores.find(p => p.topPerformer && p.team === match.teamA)
+  const topB = playerScores.find(p => p.topPerformer && p.team === match.teamB)
+  
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg px-3 sm:px-5 py-3 sm:py-4 hover:border-zinc-600 transition-all">
 
