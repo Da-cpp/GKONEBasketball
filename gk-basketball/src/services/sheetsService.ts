@@ -91,7 +91,7 @@ export async function fetchSeasonScorers(): Promise<SeasonScorer[]> {
         gamesPlayed: Number(cols[3]) || 0,
       };
     })
-    .filter((m): m is SeasonScorer => m !== null)
+    .filter((m): m is SeasonScorer => m !== null && m.totalPoints > 0 && m.playerName.toLowerCase() !== 'excluded')
     .slice(0, 10);
 }
 
@@ -111,7 +111,7 @@ export async function fetchSeasonAssisters(): Promise<SeasonAssister[]> {
         gamesPlayed: Number(cols[3]) || 0,
       };
     })
-    .filter((m): m is SeasonAssister => m !== null)
+    .filter((m): m is SeasonAssister => m !== null && m.totalAssists > 0)
     .slice(0, 10);
 }
 
@@ -131,7 +131,7 @@ export async function fetchSeasonRebounders(): Promise<SeasonRebounder[]> {
         gamesPlayed: Number(cols[3]) || 0,
       };
     })
-    .filter((m): m is SeasonRebounder => m !== null)
+    .filter((m): m is SeasonRebounder => m !== null && m.totalRebounds > 0 && m.playerName.toLowerCase() !== 'excluded')
     .slice(0, 10);
 }
 
@@ -151,7 +151,7 @@ export async function fetchSeasonStealers(): Promise<SeasonStealer[]> {
         gamesPlayed: Number(cols[3]) || 0,
       };
     })
-    .filter((m): m is SeasonStealer => m !== null)
+    .filter((m): m is SeasonStealer => m !== null && m.totalSteals > 0 && m.playerName.toLowerCase() !== 'excluded')
     .slice(0, 10);
 }
 
@@ -171,7 +171,7 @@ export async function fetchSeasonBlockers(): Promise<SeasonBlocker[]> {
         gamesPlayed: Number(cols[3]) || 0,
       };
     })
-    .filter((m): m is SeasonBlocker => m !== null)
+    .filter((m): m is SeasonBlocker => m !== null && m.totalBlocks > 0 && m.playerName.toLowerCase() !== 'excluded')
     .slice(0, 10);
 }
 

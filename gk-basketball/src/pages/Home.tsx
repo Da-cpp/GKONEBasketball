@@ -7,8 +7,8 @@ import {
   fetchSeasonStealers,
   fetchSeasonBlockers,
 } from '../services/sheetsService'
-// import type { Match, SeasonScorer, SeasonAssister, SeasonRebounder, SeasonStealer, SeasonBlocker } from '../types/match'
-import type { Match, SeasonScorer } from '../types/match'
+import type { Match, SeasonScorer, SeasonAssister, SeasonRebounder, SeasonStealer, SeasonBlocker } from '../types/match'
+// import type { Match, SeasonScorer } from '../types/match'
 
 import FeaturedMatch from '../components/FeaturedMatch'
 import MatchCard from '../components/MatchCard'
@@ -75,18 +75,18 @@ function Dropdown({ title, open, onToggle, children }: {
 export default function Home() {
   const [matches, setMatches] = useState<Match[]>([])
   const [scorers, setScorers] = useState<SeasonScorer[]>([])
-  // const [assisters, setAssisters] = useState<SeasonAssister[]>([])
-  // const [rebounders, setRebounders] = useState<SeasonRebounder[]>([])
-  // const [stealers, setStealers] = useState<SeasonStealer[]>([])
-  // const [blockers, setBlockers] = useState<SeasonBlocker[]>([])
+  const [assisters, setAssisters] = useState<SeasonAssister[]>([])
+  const [rebounders, setRebounders] = useState<SeasonRebounder[]>([])
+  const [stealers, setStealers] = useState<SeasonStealer[]>([])
+  const [blockers, setBlockers] = useState<SeasonBlocker[]>([])
   const [loading, setLoading] = useState(true)
 
   const [fixturesOpen, setFixturesOpen] = useState(false)
   const [scorersOpen, setScorersOpen] = useState(false)
-  // const [assistsOpen, setAssistsOpen] = useState(false)
-  // const [reboundsOpen, setReboundsOpen] = useState(false)
-  // const [stealsOpen, setStealsOpen] = useState(false)
-  // const [blocksOpen, setBlocksOpen] = useState(false)
+  const [assistsOpen, setAssistsOpen] = useState(false)
+  const [reboundsOpen, setReboundsOpen] = useState(false)
+  const [stealsOpen, setStealsOpen] = useState(false)
+  const [blocksOpen, setBlocksOpen] = useState(false)
 
   useEffect(() => {
     Promise.all([
@@ -96,14 +96,14 @@ export default function Home() {
       fetchSeasonRebounders(),
       fetchSeasonStealers(),
       fetchSeasonBlockers(),
-    // ]).then(([m, sc, as, rb, st, bl]) => {
-      ]).then(([m, sc,]) => {
+    ]).then(([m, sc, as, rb, st, bl]) => {
+      // ]).then(([m, sc,]) => {
       setMatches(m)
       setScorers(sc)
-      // setAssisters(as)
-      // setRebounders(rb)
-      // setStealers(st)
-      // setBlockers(bl)
+      setAssisters(as)
+      setRebounders(rb)
+      setStealers(st)
+      setBlockers(bl)
       setLoading(false)
     })
   }, [])
@@ -144,7 +144,7 @@ export default function Home() {
               </Dropdown>
             )}
 
-            {/* {assisters.length > 0 && (
+             {assisters.length > 0 && (
               <Dropdown title="Season Top Assists" open={assistsOpen} onToggle={() => setAssistsOpen(o => !o)}>
                 {assisters.map((s, i) => (
                   <StatRow key={s.playerName} rank={i} name={s.playerName} team={s.team} value={s.totalAssists} label="ast" />
@@ -174,7 +174,7 @@ export default function Home() {
                   <StatRow key={s.playerName} rank={i} name={s.playerName} team={s.team} value={s.totalBlocks} label="blk" />
                 ))}
               </Dropdown>
-            )} */}
+            )} 
           </>
         )}
       </div>
