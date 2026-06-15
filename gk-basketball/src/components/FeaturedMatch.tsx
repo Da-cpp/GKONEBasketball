@@ -1,6 +1,13 @@
 import type { Match } from '../types/match'
+import TeamLogo from './TeamLogo'
 
-export default function FeaturedMatch({ match }: { match: Match }) {
+export default function FeaturedMatch({
+  match,
+  logos,
+}: {
+  match: Match
+  logos: Record<string, string>
+}) {
   return (
     <div className="relative overflow-hidden rounded-2xl mb-10 border border-zinc-800">
 
@@ -24,10 +31,12 @@ export default function FeaturedMatch({ match }: { match: Match }) {
 
         <div className="grid grid-cols-3 items-center py-4 sm:py-6">
 
-          <div className="text-center">
-            <p className="text-zinc-500 uppercase text-xs tracking-widest mb-2 sm:mb-3">
+          {/* Team A */}
+          <div className="text-center flex flex-col items-center gap-3">
+            <p className="text-zinc-500 uppercase text-xs tracking-widest">
               Home Team
             </p>
+            <TeamLogo team={match.teamA} logoUrl={logos[match.teamA]} size={64} />
             <h3 className="text-white text-xl sm:text-5xl font-black leading-tight">
               {match.teamA}
             </h3>
@@ -39,10 +48,12 @@ export default function FeaturedMatch({ match }: { match: Match }) {
             </div>
           </div>
 
-          <div className="text-center">
-            <p className="text-zinc-500 uppercase text-xs tracking-widest mb-2 sm:mb-3">
+          {/* Team B */}
+          <div className="text-center flex flex-col items-center gap-3">
+            <p className="text-zinc-500 uppercase text-xs tracking-widest">
               Away Team
             </p>
+            <TeamLogo team={match.teamB} logoUrl={logos[match.teamB]} size={64} />
             <h3 className="text-white text-xl sm:text-5xl font-black leading-tight">
               {match.teamB}
             </h3>

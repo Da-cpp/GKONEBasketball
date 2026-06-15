@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react'
-import { fetchMatches } from '../services/sheetsService'
+import { fetchMatches, fetchTeamLogos } from '../services/sheetsService'
 import type { Match } from '../types/match'
 import MatchCard from '../components/MatchCard'
 
 export default function Fixtures() {
   const [matches, setMatches] = useState<Match[]>([])
+  const [logos, setLogos] = useState<Record<string, string>>({})
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetchMatches().then((data) => {
+    Promise.all([fetchMatches(), fetchTeamLogos()]).then(([data, lg]) => {
       setMatches(data)
+      setLogos(lg)
       setLoading(false)
     })
   }, [])
@@ -40,7 +42,7 @@ export default function Fixtures() {
         ) : (
           <div className="flex flex-col gap-2">
             {upcoming.map((m) => (
-              <MatchCard key={m.gameId} match={m} />
+              <MatchCard key={m.gameId} match={m} logos={logos} />  // 👈
             ))}
           </div>
         )}

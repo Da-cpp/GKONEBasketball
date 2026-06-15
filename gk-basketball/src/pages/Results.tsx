@@ -1,22 +1,21 @@
 import { useEffect, useState } from 'react'
-import { fetchMatches, fetchGameScorers } from '../services/sheetsService'
+import { fetchMatches, fetchGameScorers, fetchPlayerScores, fetchTeamLogos } from '../services/sheetsService'
 import type { Match, GameScorer, PlayerScore } from '../types/match'
 import ResultCard from '../components/ResultCard'
-import { fetchPlayerScores } from '../services/sheetsService'
-
 
 export default function Results() {
   const [matches, setMatches] = useState<Match[]>([])
   const [scorers, setScorers] = useState<GameScorer[]>([])
-  const [loading, setLoading] = useState(true)
   const [playerScores, setPlayerScores] = useState<PlayerScore[]>([])
-
+  const [logos, setLogos] = useState<Record<string, string>>({})
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    Promise.all([fetchMatches(), fetchGameScorers(), fetchPlayerScores()]).then(([m, s, p]) => {
+    Promise.all([fetchMatches(), fetchGameScorers(), fetchPlayerScores(), fetchTeamLogos()]).then(([m, s, p, lg]) => {
       setMatches(m)
       setScorers(s)
       setPlayerScores(p)
+      setLogos(lg)
       setLoading(false)
     })
   }, [])
@@ -55,6 +54,7 @@ export default function Results() {
                 match={m}
                 scorer={scorers.find((s) => s.gameId === m.gameId)}
                 playerScores={playerScores.filter((p) => p.gameId === m.gameId)}
+                logos={logos}  // 👈
               />
             ))}
           </div>

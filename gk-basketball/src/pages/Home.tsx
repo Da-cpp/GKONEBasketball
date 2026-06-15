@@ -6,10 +6,9 @@ import {
   fetchSeasonRebounders,
   fetchSeasonStealers,
   fetchSeasonBlockers,
+  fetchTeamLogos,
 } from '../services/sheetsService'
 import type { Match, SeasonScorer, SeasonAssister, SeasonRebounder, SeasonStealer, SeasonBlocker } from '../types/match'
-// import type { Match, SeasonScorer } from '../types/match'
-
 import FeaturedMatch from '../components/FeaturedMatch'
 import MatchCard from '../components/MatchCard'
 
@@ -79,6 +78,7 @@ export default function Home() {
   const [rebounders, setRebounders] = useState<SeasonRebounder[]>([])
   const [stealers, setStealers] = useState<SeasonStealer[]>([])
   const [blockers, setBlockers] = useState<SeasonBlocker[]>([])
+  const [logos, setLogos] = useState<Record<string, string>>({})
   const [loading, setLoading] = useState(true)
 
   const [fixturesOpen, setFixturesOpen] = useState(false)
@@ -96,14 +96,15 @@ export default function Home() {
       fetchSeasonRebounders(),
       fetchSeasonStealers(),
       fetchSeasonBlockers(),
-    ]).then(([m, sc, as, rb, st, bl]) => {
-      // ]).then(([m, sc,]) => {
+      fetchTeamLogos(),
+    ]).then(([m, sc, as, rb, st, bl, lg]) => {
       setMatches(m)
       setScorers(sc)
       setAssisters(as)
       setRebounders(rb)
       setStealers(st)
       setBlockers(bl)
+      setLogos(lg)
       setLoading(false)
     })
   }, [])
@@ -124,13 +125,13 @@ export default function Home() {
           </div>
         ) : (
           <>
-            {nextMatch && <FeaturedMatch match={nextMatch} />}
+            {nextMatch && <FeaturedMatch match={nextMatch} logos={logos} />}
 
             {remaining.length > 0 && (
               <Dropdown title="Upcoming Fixtures" open={fixturesOpen} onToggle={() => setFixturesOpen(o => !o)}>
                 <div className="flex flex-col gap-2 p-2">
                   {remaining.map((m) => (
-                    <MatchCard key={m.gameId} match={m} />
+                    <MatchCard key={m.gameId} match={m} logos={logos} />
                   ))}
                 </div>
               </Dropdown>
@@ -144,7 +145,7 @@ export default function Home() {
               </Dropdown>
             )}
 
-             {assisters.length > 0 && (
+            {assisters.length > 0 && (
               <Dropdown title="Season Top Assists" open={assistsOpen} onToggle={() => setAssistsOpen(o => !o)}>
                 {assisters.map((s, i) => (
                   <StatRow key={s.playerName} rank={i} name={s.playerName} team={s.team} value={s.totalAssists} label="ast" />
@@ -174,7 +175,7 @@ export default function Home() {
                   <StatRow key={s.playerName} rank={i} name={s.playerName} team={s.team} value={s.totalBlocks} label="blk" />
                 ))}
               </Dropdown>
-            )} 
+            )}
           </>
         )}
       </div>

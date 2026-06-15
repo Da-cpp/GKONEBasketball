@@ -198,3 +198,18 @@ export async function fetchPlayerScores(): Promise<PlayerScore[]> {
     })
     .filter((p): p is PlayerScore => p !== null);
 }
+
+export async function fetchTeamLogos(): Promise<Record<string, string>> {
+  const response = await fetch(csvUrl('logos'));
+  const text = await response.text();
+  const lines = text.trim().split('\n').slice(2); 
+
+  const map: Record<string, string> = {};
+  for (const line of lines) {
+    const cols = parseCSVLine(line);
+    if (cols[0] && cols[1]) {
+      map[cols[0].trim()] = `/logos/${cols[1].trim()}`;
+    }
+  }
+  return map;
+}
