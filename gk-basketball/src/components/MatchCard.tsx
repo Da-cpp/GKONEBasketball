@@ -20,14 +20,14 @@ export default function MatchCard({
         {/* Team A */}
         <div className="flex items-center gap-1.5 flex-1 justify-end min-w-0">
           <span className="text-white font-semibold text-xs text-right break-words min-w-0">{match.teamA}</span>
-          <TeamLogo team={match.teamA} logoUrl={logos[match.teamA]} size={22} />
+          <TeamLogo team={match.teamA} logoUrl={logos[match.teamA]} size={33} />
         </div>
 
         <span className="text-red-600 font-black text-xs bg-zinc-800 px-1.5 py-0.5 rounded shrink-0">VS</span>
 
         {/* Team B */}
         <div className="flex items-center gap-1.5 flex-1 justify-start min-w-0">
-          <TeamLogo team={match.teamB} logoUrl={logos[match.teamB]} size={22} />
+          <TeamLogo team={match.teamB} logoUrl={logos[match.teamB]} size={33} />
           <span className="text-white font-semibold text-xs text-left break-words min-w-0">{match.teamB}</span>
         </div>
       </div>
