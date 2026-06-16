@@ -4,7 +4,7 @@ export default function Fanzone() {
   return (
     <div className="min-h-screen bg-zinc-950">
 
-      {/* Page Header */}
+      {/* page header */}
       <div className="relative bg-gradient-to-br from-zinc-900 via-zinc-900 to-black border-b border-zinc-800 overflow-hidden">
         <div className="absolute left-0 top-0 bottom-0 w-1 bg-red-600" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-red-600 via-red-600/20 to-transparent" />
@@ -15,10 +15,10 @@ export default function Fanzone() {
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* main content */}
       <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col lg:flex-row gap-8 items-start">
 
-        {/* LEFT: Clickable Support Card + photos below */}
+        {/* left clickable support card*/}
         <div className="flex-1 w-full">
           <a
             href={FORM_URL}
@@ -76,12 +76,19 @@ export default function Fanzone() {
               />
             </div>
           </div>
+          {/* <div className="flex-1 rounded-xl overflow-hidden border border-zinc-800">
+              <img
+                src="/media/basketball3.png"
+                alt="Basketball moment 3"
+                className="w-full h-auto block"
+              />
+            </div> */}
         </div>
 
-        {/* RIGHT: Decorative image + sidebar info */}
+        {/* right decorative image*/}
         <div className="w-full lg:w-72 flex flex-col gap-4 shrink-0">
 
-          {/* Signing photo */}
+          {/* signing photo */}
           <div className="relative rounded-xl overflow-hidden border border-zinc-800 aspect-[3/4]">
             <img
               src="/media/rickardo-signing.png"
@@ -94,7 +101,7 @@ export default function Fanzone() {
             </div>
           </div>
 
-          {/* Blurb card */}
+          {/*blurb */}
           <div className="bg-zinc-900 border border-zinc-800 rounded-xl px-5 py-5">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-1 h-4 bg-red-600 rounded-full shrink-0" />
