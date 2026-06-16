@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Fixtures from './pages/Fixtures'
 import Results from './pages/Results'
+import Fanzone from './pages/Fanzone'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/fixtures" element={<Fixtures />} />
             <Route path="/results" element={<Results />} />
+            <Route path="/fanzone" element={<Fanzone />} />
           </Routes>
         </main>
       </div>

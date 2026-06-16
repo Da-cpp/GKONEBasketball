@@ -27,6 +27,7 @@ export default function Navbar() {
             { to: '/', label: 'Home' },
             { to: '/fixtures', label: 'Fixtures' },
             { to: '/results', label: 'Results' },
+            { to: '/fanzone', label: 'Fan Zone' },
           ].map(({ to, label }) => (
             <NavLink
               key={to}
