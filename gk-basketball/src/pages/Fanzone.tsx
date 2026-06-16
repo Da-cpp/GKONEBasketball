@@ -45,7 +45,7 @@ export default function Fanzone() {
                   Show Your Support
                 </h2>
                 <p className="text-zinc-300 text-sm mt-2 leading-relaxed max-w-sm">
-                  Fill out the form to get involved, share your voice, and be part of the GK One community.
+                  Fill out the form to get involved, give yourself and your team a chance to win.
                 </p>
                 <div className="flex items-center gap-2 mt-4">
                   <span className="inline-flex items-center gap-2 bg-red-600 group-hover:bg-red-500 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors duration-200">
@@ -59,7 +59,7 @@ export default function Fanzone() {
             </div>
           </a>
 
-          {/* Basketball photos — natural dimensions, side by side */}
+          {/* basketball photos */}
           <div className="mt-4 flex gap-4 items-start">
             <div className="flex-1 rounded-xl overflow-hidden border border-zinc-800">
               <img
