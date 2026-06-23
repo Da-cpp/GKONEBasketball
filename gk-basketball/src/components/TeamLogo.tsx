@@ -27,7 +27,7 @@ export default function TeamLogo({
     <img
       src={logoUrl}
       alt={`${team} logo`}
-      className="rounded-full object-contain shrink-0 bg-zinc-800"
+      className="object-contain shrink-0"
       style={{ width: size, height: size }}
     />
   )

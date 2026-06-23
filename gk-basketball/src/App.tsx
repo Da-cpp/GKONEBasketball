@@ -8,7 +8,7 @@ import Fanzone from './pages/Fanzone'
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-black text-white">
+      <div className="min-h-screen bg-black text-white overflow-x-hidden">
         <Navbar />
         <main>
           <Routes>
